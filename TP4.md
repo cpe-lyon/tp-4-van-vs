@@ -267,6 +267,8 @@ Ce fichier contient les nouveaux dépôts de paquets de java15
 ```
 ![](images/image2.png)
 
+![](images/image2.1.png)
+
 4. **Recommencez la compilation à l’aide de checkinstall :**
 `sudo checkinstall`
 
@@ -280,7 +282,9 @@ Question précédente.
 
 J'ai bien vérifié que le paquet `user_20221009-1_amd64.deb` a été créé et que le logiciel est à présent installé, si on tape cbonsai depuis n'importe qul dossier cela fonctionne. J'ai également vérifié avec aptitude qu'il provient bien du paquet qu'on avait créé avec checkinstall.
 
-image
+![](images/image3.png)
+
+![](images/image4.png)
 
 ## Exercice 8. Création de dépôt personnalisé
 

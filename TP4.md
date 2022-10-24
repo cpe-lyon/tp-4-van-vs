@@ -39,11 +39,19 @@ Pour que cet alias ne soit pas perdu au prochain redémarrage il faut éditer le
     2022-10-08 15:23 status installed libc-bin:amd64 2.35-0ubuntu3.1
 ```
 
+```consol
+grep " installed" /var/log/dpkg.log | tail -5 | cut -d' ' -f5 | cut -d: -f1
+```
+
 4. **Listez les derniers paquets qui ont été installés explicitement avec la commande apt install**
 
 ```consol
     User@localhost:~$ grep 'apt install' /var/log/apt/history.log
     Commandline: apt install net-tools
+```
+
+```consol
+grep "apt install" /var/log/apt/history.log | cut -d" " -f4
 ```
 
 5. **Utilisez les commandes dpkg et apt pour compter de deux manières différentes le nombre de total de paquets installés sur la machine (ne pas hésiter à consulter le manuel !). Comment explique-t-on la (petite) différence de comptage ? Pourquoi ne peut-on pas utiliser directement le fichier dpkg.log ?**
@@ -56,6 +64,10 @@ Pour que cet alias ne soit pas perdu au prochain redémarrage il faut éditer le
     WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
     617
+```
+
+```consol
+dpkg -l | grep ``^ii" | wc -l
 ```
 La différence entre dpkg et apt est que dpkg ne gère pas les dépendances, avec dpkg on ne peut installer que des fichiers locaux déjà téléchargés. Donc pour compter le nombre total de paquet installés sur la machine avec la commande dpkg on s'appérçoit qu'il ne liste pas uniquement les paquets installés
 
@@ -74,6 +86,10 @@ La différence entre dpkg et apt est que dpkg ne gère pas les dépendances, ave
 - Glances permet d'afficher l'état des principales ressources d'un système, de sa charge et du fonctionnement des applications. 
 - tldr est une abréviation de `Too long; didn't read`, qui permet de simplifier le manuel. 
 - Hollywood est un outil aussi inutile qu’indispensable et conçu dans le but de faire de nous un vrai faux hacker, comme à Hollywood.
+
+```consol
+apt show glances / tldr / hollywood
+```
 
 Installer le paquet glaces
 ```consol
@@ -110,6 +126,8 @@ A l'aide de la commande `apt search sudoku`, on peut trouver tous les paquets qu
     User@localhost:~$ sudo update
     User@localhost:~$ sudoku
 ```
+
+Ne pas installer le paquet gnome-sudoku ou ksudoku sous peine de devoir probablement réinstaller la VM.
 
 ## Exercice 2.
 
